@@ -1,0 +1,25 @@
+{
+  "name": "fgcms",
+  "description": "Foundation GeoIntelligence Content Management System",
+  "main": "server.js",
+  "authors": [
+    "IGS"
+  ],
+  "license": "ISC",
+  "homepage": "",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular": "*",
+    "bootstrap": "*",
+    "jquery-ui": "*",
+    "jquery": "*",
+    "leaflet": "*"
+  }
+}
