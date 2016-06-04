@@ -1,7 +1,7 @@
 {
-  "name": "fgcms",
+  "name": "version-manager-ui",
   "description": "Foundation GeoIntelligence Content Management System",
-  "main": "server.js",
+  "main": "",
   "authors": [
     "IGS"
   ],
@@ -10,13 +10,11 @@
   "private": true,
   "ignore": [
     "**/.*",
-    "node_modules",
     "bower_components",
     "test",
     "tests"
   ],
   "dependencies": {
-    "angular": "*",
     "bootstrap": "*",
     "jquery-ui": "*",
     "jquery": "*",
