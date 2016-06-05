@@ -18,6 +18,7 @@
     "bootstrap": "*",
     "jquery-ui": "*",
     "jquery": "*",
-    "leaflet": "*"
+    "leaflet": "*",
+    "jtable": "^2.4.0"
   }
 }
