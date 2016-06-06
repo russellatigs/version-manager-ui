@@ -12,14 +12,23 @@ $(document).ready(function () {
                    key: true,
                    list: false
                },
-               Name: {
-                   title: 'Author Name',
+               JobName: {
+                   title: 'Job Name',
                    width: '40%'
                },
-               Age: {
-                   title: 'Age',
+               CreatedBy: {
+                   title: 'Created By',
                    width: '20%'
                },
+               Long: {
+                   title: 'Longitude',
+                   width: '20%'
+               },
+               Lat: {
+                   title: 'Latitude',
+                   width: '20%'
+               },
+
                RecordDate: {
                    title: 'Record date',
                    width: '30%',
@@ -27,6 +36,7 @@ $(document).ready(function () {
                    create: false,
                    edit: false
                }
+
            }
        });
    });
