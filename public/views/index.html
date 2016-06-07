@@ -41,20 +41,21 @@
                 <button class="btn btn-warning btn-small" type="submit" id="edit">
                    <span class="glyphicon glyphicon-edit" aria-hidden="true"></span> Edit
                 </button>
-                <button class="btn btn-danger btn-small" type="submit" id="delete">
-                  <span class="glyphicon glyphicon-remove" aria-hidden="true"></span> Delete
-                </button>
                 <button class="btn btn-primary btn-small" type="submit" id="export">
                   <span class="glyphicon glyphicon-send" aria-hidden="true"></span> Export
+                </button>
+                <button class="btn btn-danger btn-small" type="submit" id="delete">
+                  <span class="glyphicon glyphicon-remove" aria-hidden="true"></span> Delete
                 </button>
               </td>
             </tr>
           </tbody>
         </table>
       </div>
-
-      <button type="button" class="btn btn-primary" data-toggle="modal" data-target=".bs-example-modal-lg">New Job</button>
-<div class= "modal fade bs-example-modal-lg">
+      <!--Button to make new job -->
+      <button type="button" class="btn btn-success" data-toggle="modal" data-target=".bs-example-modal-lg">New Job</button>
+      <!-- Modal for new job -->
+      <div class= "modal fade bs-example-modal-lg">
       <div id="login-overlay" class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
@@ -95,6 +96,7 @@
                             </div>
                         </div>
                         <div class="col-xs-6">
+                          <div id="mapid" style="width: 430px; height: 500px"></div>
 
                         </div>
                     </div>
@@ -105,39 +107,13 @@
 </div>
 
 
-
-
-
-
-
-
-
-      <!-- <div class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
-              <div class="modal-dialog modal-lg">
-                    <div class="modal-content">
-
-                      <input type="text" placeholder="Job Name" required>
-                      <input type="number" placeholder="Created By" class="input-small" required>
-                      <button class="btn btn-success" type="submit" id="add">
-                        <i class="icon-plus icon-white"></i> add
-                      </button>
-
-                       <div id="mapid"></div>
-                      <button class="btn btn-success">
-                        <i class="icon-ok icon-white"></i> saved
-                      </button>
-                    </div>
-                  </div>
-              </div> -->
-
-
-
-
-
     </body>
     <script src="../bower_components/jquery/dist/jquery.min.js"></script>
     <script src="../bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
     <script src="../bower_components/leaflet/dist/leaflet.js"></script>
     <script src="../bower_components/toastr/toastr.min.js"></script>
     <script src="../javascripts/app.js"></script>
+    <script src="../javascripts/map.js"></script>
+
+    </script>
     </html>
