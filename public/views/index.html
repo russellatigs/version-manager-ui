@@ -1,65 +1,52 @@
 <!doctype html>
-    <html>
-    <!-- Latest compiled and minified CSS -->
-    <link rel="stylesheet" type="text/css" href="../bower_components/bootstrap/dist/css/bootstrap.min.css"/>
-    <link rel="stylesheet" type="text/css" href="../stylesheets/main.css"/>
-    <link rel="stylesheet" type="text/css" href="../bower_components/leaflet/dist/leaflet.css"/>
-    <link rel="stylesheet" type="text/css" href="../bower_components/toastr/toastr.min.css"/>
+<html>
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" type="text/css" href="../bower_components/bootstrap/dist/css/bootstrap.min.css"/>
+<link rel="stylesheet" type="text/css" href="../stylesheets/main.css"/>
+<link rel="stylesheet" type="text/css" href="../bower_components/leaflet/dist/leaflet.css"/>
+<link rel="stylesheet" type="text/css" href="../bower_components/toastr/toastr.min.css"/>
 
 
-
-    <head>
-<title>FGCMS</title> </head>
+<head>
+    <title>FGCMS</title></head>
 
 <body>
-  <div class="container">
+<div class="container">
 
-      <div class="row">
+    <div class="row">
         <div class="page-header">
-          <div class="col-md-6">
-            <h1>Jobs Portal</h1>
-          </div>
+            <div class="col-md-6">
+                <h1>Jobs Portal</h1>
+            </div>
         </div>
-      </div>
+    </div>
 
-      <div class="row">
-        <table id="lista-compras" class="table table-striped">
-          <thead>
+    <div class="row">
+        <table class="table table-striped" id="jobs">
+            <thead>
             <tr>
-              <th>Select</th>
-              <th>Job Name</th>
-              <th>Created By</th>
+                <th>Select</th>
+                <th>Job Name</th>
+                <th>Created By</th>
+                <th>Latitude</th>
+                <th>Longitude</th>
+            </tr>
+            </thead>
+            <tbody>
 
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td><input type="checkbox" ></td>
-              <td></td>
-              <td></td>
-              <td>
-                <button class="btn btn-warning btn-small" type="submit" id="edit">
-                   <span class="glyphicon glyphicon-edit" aria-hidden="true"></span> Edit
-                </button>
-                <button class="btn btn-primary btn-small" type="submit" id="export">
-                  <span class="glyphicon glyphicon-send" aria-hidden="true"></span> Export
-                </button>
-                <button class="btn btn-danger btn-small" type="submit" id="delete">
-                  <span class="glyphicon glyphicon-remove" aria-hidden="true"></span> Delete
-                </button>
-              </td>
-            </tr>
-          </tbody>
+            </tbody>
         </table>
-      </div>
-      <!--Button to make new job -->
-      <button type="button" class="btn btn-success" data-toggle="modal" data-target=".bs-example-modal-lg">New Job</button>
-      <!-- Modal for new job -->
-      <div class= "modal fade bs-example-modal-lg">
-      <div id="login-overlay" class="modal-dialog">
+    </div>
+    <!--Button to make new job -->
+    <button type="button" class="btn btn-success" data-toggle="modal" data-target=".bs-example-modal-lg">New Job
+    </button>
+    <!-- Modal for new job -->
+    <div class="modal fade bs-example-modal-lg">
+        <div id="login-overlay" class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
+                    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span
+                            class="sr-only">Close</span></button>
                     <h4 class="modal-title" id="myModalLabel">Create a new Job</h4>
                 </div>
                 <div class="modal-body">
@@ -73,30 +60,30 @@
                                         <span class="help-block"></span>
                                     </div>
                                     <div class="form-group">
-                                        <label for="password" class="control-label">Created By</label>
-                                        <input type="password" class="form-control" placeholder="Enter your name">
+                                        <label class="control-label">Created By</label>
+                                        <input class="form-control" placeholder="Enter your name">
                                         <span class="help-block"></span>
                                     </div>
 
                                     <div class="form-group">
-                                        <label for="password" class="control-label">Longitude</label>
-                                        <input type="password" class="form-control" placeholder="Enter longitude coordinates" >
+                                        <label class="control-label">Longitude</label>
+                                        <input class="form-control" placeholder="Enter longitude coordinates">
                                         <span class="help-block"></span>
                                     </div>
                                     <div class="form-group">
-                                        <label for="password" class="control-label">Latitude</label>
-                                        <input type="password" class="form-control"placeholder="Enter latitude coordinates">
+                                        <label class="control-label">Latitude</label>
+                                        <input class="form-control" placeholder="Enter latitude coordinates">
                                         <span class="help-block"></span>
                                     </div>
                                     <div class="modal-footer">
-                                          <button type="submit" data-dismiss="modal" class="btn">Cancel</button>
-                                          <button type="submit" id="add" class="btn btn-primary">Save changes</button>
-                                        </div>
-                                 </form>
+                                        <button type="submit" data-dismiss="modal" class="btn">Cancel</button>
+                                        <button type="submit" id="add" class="btn btn-primary">Save changes</button>
+                                    </div>
+                                </form>
                             </div>
                         </div>
                         <div class="col-xs-6">
-                          <div id="mapid" style="width: 430px; height: 500px"></div>
+                            <div id="mapid" style="width: 430px; height: 500px"></div>
 
                         </div>
                     </div>
@@ -104,16 +91,17 @@
             </div>
         </div>
 
-</div>
+    </div>
 
 
-    </body>
-    <script src="../bower_components/jquery/dist/jquery.min.js"></script>
-    <script src="../bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
-    <script src="../bower_components/leaflet/dist/leaflet.js"></script>
-    <script src="../bower_components/toastr/toastr.min.js"></script>
-    <script src="../javascripts/app.js"></script>
-    <script src="../javascripts/map.js"></script>
+</body>
+<script src="../bower_components/jquery/dist/jquery.min.js"></script>
+<script src="../bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+<script src="../bower_components/leaflet/dist/leaflet.js"></script>
+<script src="../bower_components/toastr/toastr.min.js"></script>
+<script src="../javascripts/app.js"></script>
+<script src="../javascripts/map.js"></script>
 
-    </script>
-    </html>
+</script>
+</
+html >
