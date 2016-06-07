@@ -12,3 +12,8 @@ body {
 .page-header {
     padding-bottom: 50px;
 }
+.modal-content {
+  width: 1000px;
+  height: 500px;
+
+}
