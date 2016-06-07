@@ -1,4 +1,5 @@
 $(document).ready(function(){
+  
 
                   //  Gets jobs and populates data
                         $.ajax({
