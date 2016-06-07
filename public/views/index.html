@@ -4,22 +4,81 @@
     <link rel="stylesheet" type="text/css" href="../bower_components/bootstrap/dist/css/bootstrap.min.css"/>
     <link rel="stylesheet" type="text/css" href="../stylesheets/main.css"/>
     <link rel="stylesheet" type="text/css" href="../bower_components/leaflet/dist/leaflet.css"/>
-    <link rel="stylesheet" href="../bower_components/jquery-ui/themes/base/jquery-ui.min.css" type="text/css">
-    <link rel="stylesheet" type="text/css" href="../bower_components/jtable/lib/themes/metro/blue/jtable.min.css"/>
-    <link rel="stylesheet" type="text/css" href="../bower_components/jtable/lib/themes/jqueryui/jtable_jqueryui.min.css"/>
+    <link rel="stylesheet" type="text/css" href="../bower_components/toastr/toastr.min.css"/>
+
+
 
     <head>
 <title>FGCMS</title> </head>
 
 <body>
-<div id="PersonTableContainer"></div>
+  <div class="container">
+
+      <div class="row">
+        <div class="page-header">
+          <div class="col-md-6">
+            <h1>Jobs Portal</h1>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <table id="lista-compras" class="table table-striped">
+          <thead>
+            <tr>
+              <th>Select</th>
+              <th>Job Name</th>
+              <th>Created By</th>
+
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><input type="checkbox"></td>
+              <td></td>
+              <td></td>
+              <td>
+                <button class="btn btn-warning btn-small">
+                   <span class="glyphicon glyphicon-edit" aria-hidden="true"></span> Edit
+                </button>
+                <button class="btn btn-danger btn-small">
+                  <span class="glyphicon glyphicon-remove" aria-hidden="true"></span> Delete
+                </button>
+                <button class="btn btn-primary btn-small">
+                  <span class="glyphicon glyphicon-send" aria-hidden="true"></span> Export
+                </button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <button type="button" class="btn btn-primary" data-toggle="modal" data-target=".bs-example-modal-lg">New Job</button>
+
+      <div class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
+              <div class="modal-dialog modal-lg">
+                    <div class="modal-content">
+
+                      <input type="text" placeholder="Job Name" required>
+                      <input type="number" placeholder="Created By" class="input-small" required>
+                      <button class="btn btn-success">
+                        <i class="icon-plus icon-white"></i> add
+                      </button>
+                      <button class="btn btn-success">
+                        <i class="icon-ok icon-white"></i> saved
+                      </button>
+                    </div>
+                  </div>
+              </div>
+
+
+
 
 
     </body>
     <script src="../bower_components/jquery/dist/jquery.min.js"></script>
-    <script src="../bower_components/jquery-ui/jquery-ui.min.js"></script>
     <script src="../bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
     <script src="../bower_components/leaflet/dist/leaflet.js"></script>
-    <script src="../bower_components/jtable/lib/jquery.jtable.min.js"></script>
+    <script src="../bower_components/toastr/toastr.min.js"></script>
     <script src="../javascripts/app.js"></script>
     </html>

@@ -16,9 +16,8 @@
   ],
   "dependencies": {
     "bootstrap": "*",
-    "jquery-ui": "*",
     "jquery": "*",
     "leaflet": "*",
-    "jtable": "*"
+    "toastr": "*"
   }
 }
