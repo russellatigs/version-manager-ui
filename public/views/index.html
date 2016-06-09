@@ -87,8 +87,7 @@
                         </div>
                     </form>
                     <!--Ends Form-->
-                </div>
-
+              </div>
             <!--Start Map-->
                  <div class="col-xs-6">
                 <div id="mapid" style="width: 430px; height: 500px"></div>
@@ -102,7 +101,7 @@
 <!--Actions Modals -->
 
 <!--Export Modal -->
-<form method="GET">
+<form method="GET" id="job-export">
   <div id="exportModal" class= "modal fade hello" >
         <div class="modal-dialog">
             <div class = "modal-content">
@@ -116,7 +115,7 @@
                      <div class="modal-footer">
                        <div class="col-md-12 text-center">
                         <button data-dismiss="modal" class="btn">Cancel</button>
-                        <button type="submit" id="" class="btn btn-primary" name="">Export</button>
+                        <button type="submit" class="btn btn-primary" name="">Export</button>
                       </div>
                   </div>
                 </div>
@@ -127,7 +126,7 @@
   <!--Export Modal End-->
 
   <!--Chek In Modal -->
-  <form method="POST">
+  <form method="POST" id="job-checkin">
     <div id="checkModal" class= "modal fade hello" >
           <div class="modal-dialog">
               <div class = "modal-content">
@@ -140,7 +139,7 @@
                       <p class="text-center">Are you sure you want to check in this job?</p>
                       <div class="col-md-12 text-center">
                       <button data-dismiss="modal" class="btn">Cancel</button>
-                      <button type="submit" id="" class="btn btn-primary" name="">Check In</button>
+                      <button type="submit" class="btn btn-primary" name="">Check In</button>
                     </div>
                   </div>
           </div>
@@ -150,7 +149,7 @@
     <!--Check In Modal End-->
 
     <!--Post to Gold Modal -->
-    <form method="PUT">
+    <form method="PUT" id="job-gold">
       <div id="postModal" class= "modal fade hello" >
             <div class="modal-dialog">
                 <div class = "modal-content">
@@ -163,7 +162,7 @@
                         <p class="text-center">Are you sure you want to Post to Gold this job?</p>
                         <div class="col-md-12 text-center">
                         <button data-dismiss="modal" class="btn">Cancel</button>
-                        <button type="submit" id="" class="btn btn-primary" name"">Post to Gold</button>
+                        <button type="submit" class="btn btn-primary" name"">Post to Gold</button>
                       </div>
                     </div>
             </div>
@@ -173,7 +172,7 @@
       <!--Post to Gold End-->
 
     <!--Delete Modal -->
-    <form method="DELETE">
+    <form method="DELETE" id="job-delete">
       <div id="deleteModal" class= "modal fade hello" >
             <div class="modal-dialog">
                 <div class = "modal-content">
@@ -186,7 +185,7 @@
                         <p class="text-center">Are you sure you want to delete this job?</p>
                         <div class="col-md-12 text-center">
                         <button data-dismiss="modal" class="btn">Cancel</button>
-                        <button type="submit" id="" class="btn btn-primary">Delete</button>
+                        <button type="submit" class="btn btn-primary">Delete</button>
                       </div>
                     </div>
             </div>

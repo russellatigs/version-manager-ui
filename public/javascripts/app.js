@@ -44,11 +44,12 @@ $(document).ready(function () {
        e.preventDefault();
         $.ajax({
             type: 'POST',
-            url: 'http://ec2-54-152-233-204.compute-1.amazonaws.com:8888/jobs',
+            url: "http://ec2-54-152-233-204.compute-1.amazonaws.com:8888/jobs",
             headers:{"VMUser":"hmoreno",
             'Accept': 'application/json',
-            'Content-Type': 'application/json' },
-            dataType: 'json',
+            'Content-Type': 'application/json'
+           },
+            dataType:'json',
             timeout:3000,
             crossDomain: true,
             success: function(data){
@@ -59,41 +60,89 @@ $(document).ready(function () {
         return false;
     });
 
+    //Export a Job
+    $("#job-export").submit(function () {
+        $.ajax({
+            type:'GET',
+            url: "http://ec2-54-152-233-204.compute-1.amazonaws.com:8888/jobs/{jobid}/file",
+            headers: {
+                "VMUser": "hmoreno",
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+            dataType: 'json',
+            timeout: 3000,
+            crossDomain: true,
+
+        }).done(function (data) {
+            console.log(data);
+            console.log("result recieved");
+        }).fail(function (err) {
+                console.log(err);
+                console.log("error")
+            })
+            .always(function () {
+                console.log("complete");
+            });
+
+    });
+
+    //Check In a Job
+     $('#job-checkin').submit(function(e) {
+        e.preventDefault();
+         $.ajax({
+             type: 'POST',
+             url: 'http://ec2-54-152-233-204.compute-1.amazonaws.com:8888/jobs/',
+             headers:{"VMUser":"hmoreno",
+             'Accept': 'application/json',
+             'Content-Type': 'application/json' },
+             dataType: 'json',
+             timeout:3000,
+             crossDomain: true,
+             success: function(data){
+               console.log(data);
+             },
+             data: JSON.stringify
+         });
+         return false;
+     });
+
+     //Post a Job to Gold
+      $('#job-gold').submit(function(e) {
+         e.preventDefault();
+          $.ajax({
+              type: 'PUT',
+              url: 'http://ec2-54-152-233-204.compute-1.amazonaws.com:8888/jobs/{jobid}',
+              headers:{"VMUser":"hmoreno",
+              'Accept': 'application/json',
+              'Content-Type': 'application/json' },
+              dataType: 'json',
+              timeout:3000,
+              crossDomain: true,
+              success: function(data){
+                console.log(data);
+              },
+              data: JSON.stringify
+          });
+          return false;
+      });
+
     //Deletes a Job
-    $("#delete").click(function () {
+    $("#job-delete").click(function(e) {
+      e.preventDefault();
         console.log('Im working');
         $.ajax({
-            type: 'DELETE',
-            url: "http://ec2-54-152-233-204.compute-1.amazonaws.com:8888/jobs/{jobid}",
-            timeout: 3000,
-            crossDomain: true,
-            dataType: 'json',
-            headers: {
-                "VMUser": "hmoreno"
-            }
-        }).done(function (data) {
-            console.log(data);
-            console.log("result recieved");
-        }).fail(function (err) {
-                console.log(err);
-                console.log("error")
-            })
-            .always(function () {
-                console.log("complete");
-            });
-
-    });
-
-    //Export a Job
-    $("#export").submit(function () {
-        $.ajax({
             type: 'GET',
-            url: "http://ec2-54-152-233-204.compute-1.amazonaws.com:8888/jobs/{jobid}/file",
-            timeout: 3000,
-            crossDomain: true,
+            url: "http://ec2-54-152-233-204.compute-1.amazonaws.com:8888/jobs",
+            headers:{"VMUser":"hmoreno",
+            'Accept': 'application/json',
+            'Content-Type': 'application/json' },
             dataType: 'json',
-            headers: {
-                "VMUser": "hmoreno"
+            timeout:3000,
+            crossDomain: true,
+            success: function(data){
+              var jobId = data.jobid;
+
             }
         }).done(function (data) {
             console.log(data);
@@ -107,5 +156,6 @@ $(document).ready(function () {
             });
 
     });
+
 
 });
