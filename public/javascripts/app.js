@@ -40,25 +40,26 @@ $(document).ready(function () {
         });
 
    //Creates a Job
-    $('#job-form').submit(function(e) {
-       e.preventDefault();
-        $.ajax({
-            type: 'POST',
-            url: "http://ec2-54-152-233-204.compute-1.amazonaws.com:8888/jobs",
-            headers:{"VMUser":"hmoreno",
-            'Accept': 'application/json',
-            'Content-Type': 'application/json'
+   $('#job-form').submit(function(e) {
+      e.preventDefault();
+       $.ajax({
+           type: 'POST',
+           url: 'http://ec2-54-152-233-204.compute-1.amazonaws.com:8888/jobs',
+           headers:{"VMUser":"hmoreno",
+           'Accept': 'application/json',
+         'Content-Type': 'application/json' },
+         dataType: 'json',
+           timeout:3000,
+           crossDomain: true,
+           success: function(data){
+             console.log(data);
            },
-            dataType:'json',
-            timeout:3000,
-            crossDomain: true,
-            success: function(data){
-              console.log(data);
-            },
-            data: JSON.stringify
-        });
-        return false;
-    });
+           data: JSON.stringify({ name: $("#job-name").val(),
+                   longitude: $("#job-longitude").val(),
+                   latitude:  $("#job-latitude").val()})
+       });
+       return false;
+   });
 
     //Export a Job
     $("#job-export").submit(function () {
