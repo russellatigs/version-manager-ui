@@ -17,7 +17,6 @@
   "dependencies": {
     "bootstrap": "*",
     "jquery": "*",
-    "leaflet": "*",
-    "toastr": "*"
+    "leaflet": "*"
   }
 }

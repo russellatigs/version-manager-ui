@@ -83,7 +83,7 @@ $(document).ready(function () {
            url: 'http://ec2-54-152-233-204.compute-1.amazonaws.com:8888/jobs',
            headers:{"VMUser":"hmoreno",
            'Accept': 'application/json',
-         'Content-Type': 'application/json' },
+           'Content-Type': 'application/json' },
          dataType: 'json',
            timeout:3000,
            crossDomain: true,
@@ -165,8 +165,4 @@ $(document).ready(function () {
           });
           return false;
       });
-
-
-
-
 });

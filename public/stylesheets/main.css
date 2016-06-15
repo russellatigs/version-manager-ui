@@ -1,34 +1,43 @@
-body {
-    padding-top: 50px;
-}
+body { margin:0;
+       padding:0;
+     }
 
-#lista-compras td, #lista-compras th {
-	text-align: center;
-}
-.comprado-true {
-	text-decoration: line-through;
-	color: red;
-}
-.page-header {
-    padding-bottom: 50px;
-}
-.modal-content {
-  width: 1000px;
-  height: 650px;
+#map { position: absolute;
+       top:0;
+       bottom:0;
+       right:0;
+       left:0;
+      }
 
-}
+.leaflet-container {
+      margin-top: 4.2em;
+
+      }
+
 #mapid {
-  height: 180px;
-}
-.modal{
-padding-right: 400px;
+      height: 75vh;
+       }
 
-}
-#job{
-    width: 500px;
-    height: 200px;
-    margin-left: 16em;
-}
-.hello {
-  height: 300px;
-}
+#geoloc {
+     padding-left: 30px;
+       }
+/* Change cursor when mousing over clickable layer */
+.leaflet-clickable {
+    cursor: crosshair !important;
+      }
+/* Change cursor when over entire map */
+.leaflet-container {
+    cursor: crosshair !important;
+      }
+#basemaps-wrapper {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    z-index: 400;
+    background: white;
+    padding: 10px;
+    margin-top: 4.2em;
+  }
+  #basemaps {
+    margin-bottom: 5px;
+  }
