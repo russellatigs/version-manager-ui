@@ -22,7 +22,8 @@ $(document).ready(function () {
                 var id = value.jobid;
                 var status = value.status;
 
-                $("#jobs tbody").append("<tr><td>"+ status +"</td><td>" + jobName + "</td><td>" + createdBy + "</td><td>" + latitude + "</td><td>" + longitude + "</td><td>  <button class='btn btn-primary btn-small' id='export' data-toggle='modal' data-target='#exportModal'> <span class='glyphicon glyphicon-send' aria-hidden='true'></span> Export </button> <button class='btn btn-info btn-small' type='submit' id='edit' data-toggle='modal' data-target='#checkModal'> <span class='glyphicon glyphicon-ok' aria-hidden='true'></span> Check In </button> <button class='btn btn-warning btn-small' type='submit' id='edit' data-toggle='modal' data-target='#postModal'> <span class='glyphicon glyphicon-edit' aria-hidden='true'></span> Post to Gold </button> <button class='btn btn-danger btn-small' id='delete' data-toggle='modal' data-target='#deleteModal'> <span class='glyphicon glyphicon-remove' aria-hidden='true'></span> Delete </button> </td></tr> ");
+                $("#jobs tbody").append("<tr data-id="+id+"><td>"+ status +"</td><td>" + jobName + "</td><td>" + createdBy + "</td><td>" + latitude + "</td><td>" + longitude + "</td><td>  <button class='btn btn-primary btn-small' id='export' data-toggle='modal' data-target='#exportModal'> <span class='glyphicon glyphicon-send' aria-hidden='true'></span> Export </button> <button class='btn btn-info btn-small' type='submit' id='edit' > <span class='glyphicon glyphicon-ok' aria-hidden='true'></span> Check In </button> <button class='btn btn-warning btn-small' type='submit' id='edit'> <span class='glyphicon glyphicon-edit' aria-hidden='true'></span> Post to Gold </button> <button class='btn btn-danger btn-small delete-job'> <span class='glyphicon glyphicon-remove' aria-hidden='true'></span> Delete </button> </td></tr> ");
+
             });
 
         },
@@ -31,6 +32,41 @@ $(document).ready(function () {
     }).done(function (data) {
         console.log(data);
         console.log("result recieved");
+
+        //Deletes a Job
+        $(".delete-job").on('click', function(e) {
+          var jobId = $(this).closest('tr').attr("data-id");
+
+            $.ajax({
+                type: 'DELETE',
+                url: "http://ec2-54-152-233-204.compute-1.amazonaws.com:8888/jobs/"+jobId,
+                headers:{"VMUser":"hmoreno",
+                'Accept': 'application/json',
+                'Content-Type': 'application/json' },
+                dataType: 'json',
+                timeout:3000,
+                crossDomain: true,
+                success: function(data){
+
+                   if(data.status === 'Job deleted succcessfully'){
+                     console.log("inside if");
+                     $("tr[data-id='"+jobId+"']").remove();
+                   }
+
+                }
+            }).done(function (data) {
+                console.log(data);
+                console.log("result recieved");
+            }).fail(function (err) {
+                    console.log(err);
+                    console.log("error")
+                })
+                .always(function () {
+                    console.log("complete");
+                });
+
+        });
+
     }).fail(function (err) {
             console.log(err);
             console.log("error")
@@ -113,7 +149,7 @@ $(document).ready(function () {
          e.preventDefault();
           $.ajax({
               type: 'PUT',
-              url: 'http://ec2-54-152-233-204.compute-1.amazonaws.com:8888/jobs/{jobid}',
+              url: 'http://ec2-54-152-233-204.compute-1.amazonaws.com:8888/jobs/',
               headers:{"VMUser":"hmoreno",
               'Accept': 'application/json',
               'Content-Type': 'application/json' },
@@ -123,40 +159,14 @@ $(document).ready(function () {
               success: function(data){
                 console.log(data);
               },
-              data: JSON.stringify
+              // data:{
+              //   id:
+              // }
           });
           return false;
       });
 
-    //Deletes a Job
-    $("#job-delete").click(function(e) {
-      e.preventDefault();
-        console.log('Im working');
-        $.ajax({
-            type: 'GET',
-            url: "http://ec2-54-152-233-204.compute-1.amazonaws.com:8888/jobs",
-            headers:{"VMUser":"hmoreno",
-            'Accept': 'application/json',
-            'Content-Type': 'application/json' },
-            dataType: 'json',
-            timeout:3000,
-            crossDomain: true,
-            success: function(data){
-              var jobId = data.jobid;
 
-            }
-        }).done(function (data) {
-            console.log(data);
-            console.log("result recieved");
-        }).fail(function (err) {
-                console.log(err);
-                console.log("error")
-            })
-            .always(function () {
-                console.log("complete");
-            });
-
-    });
 
 
 });
