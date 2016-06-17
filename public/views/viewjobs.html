@@ -13,21 +13,24 @@
   <nav class="navbar navbar-inverse navbar-fixed-top">
       <div class="container">
         <div class="navbar-header">
-          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-            <span class="sr-only">Toggle navigation</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
+
+
           <a class="navbar-brand" href="map.html">FGCMS</a>
         </div>
         <div id="navbar" class="collapse navbar-collapse">
           <ul class="nav navbar-nav">
             <li class="active"><a href="map.html">Map</a></li>
             <li><a href="viewjobs.html">View Jobs</a></li>
+
           </ul>
+          <!--Button to make new job -->
+          <button type="button" class="btn btn-success" data-toggle="modal" data-target=".job-modal">New Job
+          </button>
+
         </div><!--/.nav-collapse -->
+
       </div>
+
     </nav>
 
 <div class="container">
@@ -35,12 +38,15 @@
         <div class="page-header">
             <div class="col-md-6">
                 <h1>Jobs Portal</h1>
+
             </div>
+
         </div>
     </div>
 
 
     <div class="form-group pull-right">
+
         <input type="text" class="search form-control" placeholder="What you looking for?">
     </div>
 
@@ -53,6 +59,7 @@
                 <th>Created By</th>
                 <th>Latitude</th>
                 <th>Longitude</th>
+                <th>Provider</th>
                 <th>Actions</th>
             </tr>
             </thead>
@@ -60,6 +67,7 @@
 
             </tbody>
         </table>
+
     </div>
 
 
@@ -163,6 +171,57 @@
 
       <!--Delete Modal End-->
    </div><!--Closes Container-->
+   <div class="modal fade job-modal">
+       <div class="modal-dialog">
+           <div class="modal-content">
+               <div class="modal-header">
+                   <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span
+                           class="sr-only">Close</span></button>
+                   <h4 class="modal-title" id="myModalLabel">Create a new Job</h4>
+         </div>
+
+     <div class="modal-body">
+           <div class="row">
+               <div class="col-xs-12">
+                 <!--Starts Form-->
+                       <form id="job-form" method="POST">
+                           <div class="form-group">
+                               <h3>Job Name</h3>
+                               <input type="text" class="form-control" placeholder="Enter a name for your job" name="name" id="job-name">
+                           </div>
+                           <!-- <div class="form-group">
+                               <label class="control-label">Created By</label>
+                               <input class="form-control" placeholder="Enter your name" name="createdby">
+                               <span class="help-block"></span>
+                           </div> -->
+                           <div class="form-group">
+                               <h3>Longitude</h3>
+                               <input class="form-control" placeholder="Enter longitude coordinates" name="longitude" id="job-longitude">
+                           </div>
+                           <div class="form-group">
+                               <h3>Latitude</h3>
+                               <input class="form-control" placeholder="Enter latitude coordinates" name"latitude" id="job-latitude">
+                           </div>
+                           <div class="form-group">
+                               <h3>Provider</h3>
+                               <input class="form-control" placeholder="Enter name of provider" name"provider" id="job-provider">
+                           </div>
+                           <!-- <div class="form-group">
+                               <h3>Provider</h3>
+                               <input class="form-control" placeholder="Enter name of provider" name"provider" id="job-provider">
+                           </div> -->
+                           <div class="modal-footer">
+                               <button data-dismiss="modal" class="btn">Cancel</button>
+                               <button type="submit" id="add" class="btn btn-primary">Save changes</button>
+                           </div>
+                       </form>
+                       <!--Ends Form-->
+                 </div>
+               <!--Start Map-->
+
+              </div> <!-- Closes Row-->
+            </div><!--Closes Modal Body-->
+
 
 
 

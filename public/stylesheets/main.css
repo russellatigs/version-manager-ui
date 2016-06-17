@@ -41,3 +41,11 @@ body { margin:0;
   #basemaps {
     margin-bottom: 5px;
   }
+
+  .btn-success {
+    color: #fff;
+    background-color: #5cb85c;
+    border-color: #4cae4c;
+    margin-left: 800px;
+    margin-top: 10px;
+}

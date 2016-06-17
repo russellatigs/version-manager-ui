@@ -51,62 +51,10 @@
     <option value="Imagery">Imagery<options>
     <option value="ShadedRelief">Shaded Relief<options>
   </select>
-  <!--Button to make new job -->
-  <button type="button" class="btn btn-success" data-toggle="modal" data-target=".job-modal">New Job
-  </button>
+
 
 
 </div>
-<div class="modal fade job-modal">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span
-                        class="sr-only">Close</span></button>
-                <h4 class="modal-title" id="myModalLabel">Create a new Job</h4>
-      </div>
-
-  <div class="modal-body">
-        <div class="row">
-            <div class="col-xs-12">
-              <!--Starts Form-->
-                    <form id="job-form" method="POST">
-                        <div class="form-group">
-                            <h3>Job Name</h3>
-                            <input type="text" class="form-control" placeholder="Enter a name for your job" name="name" id="job-name">
-                        </div>
-                        <!-- <div class="form-group">
-                            <label class="control-label">Created By</label>
-                            <input class="form-control" placeholder="Enter your name" name="createdby">
-                            <span class="help-block"></span>
-                        </div> -->
-                        <div class="form-group">
-                            <h3>Longitude</h3>
-                            <input class="form-control" placeholder="Enter longitude coordinates" name="longitude" id="job-longitude">
-                        </div>
-                        <div class="form-group">
-                            <h3>Latitude</h3>
-                            <input class="form-control" placeholder="Enter latitude coordinates" name"latitude" id="job-latitude">
-                        </div>
-                        <div class="form-group">
-                            <h3>Provider</h3>
-                            <input class="form-control" placeholder="Enter name of provider" name"provider" id="job-provider">
-                        </div>
-                        <!-- <div class="form-group">
-                            <h3>Provider</h3>
-                            <input class="form-control" placeholder="Enter name of provider" name"provider" id="job-provider">
-                        </div> -->
-                        <div class="modal-footer">
-                            <button data-dismiss="modal" class="btn">Cancel</button>
-                            <button type="submit" id="add" class="btn btn-primary">Save changes</button>
-                        </div>
-                    </form>
-                    <!--Ends Form-->
-              </div>
-            <!--Start Map-->
-
-           </div> <!-- Closes Row-->
-         </div><!--Closes Modal Body-->
 
 </body>
 <script src="../bower_components/jquery/dist/jquery.min.js"></script>
