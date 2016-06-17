@@ -67,6 +67,9 @@ $(document).ready(function () {
 
         });
 
+    }).done(function (data) {
+        console.log(data);
+        console.log("result recieved");
     }).fail(function (err) {
             console.log(err);
             console.log("error")

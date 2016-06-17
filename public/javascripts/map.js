@@ -39,12 +39,16 @@ var map = L.map("map").setView([35.46, -93.50], 3);
   }
 
   var popup = L.popup();
+	L.map('map', { searchControl: {layer: searchLayer} });
 
   function onMapClick(e) {
     popup
     	.setLatLng(e.latlng)
     	.setContent("Coordinates: " + "Latitude " + (e.latlng.lat).toFixed(4) + ", " + "Longitude " + (e.latlng.lng).toFixed(4).toString())
     	.openOn(map);
+
     }
+
+
 
   map.on('click', onMapClick);
