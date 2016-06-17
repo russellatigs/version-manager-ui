@@ -39,7 +39,7 @@ var map = L.map("map").setView([35.46, -93.50], 3);
   }
 
   var popup = L.popup();
-	L.map('map', { searchControl: {layer: searchLayer} });
+
 
   function onMapClick(e) {
     popup
@@ -48,7 +48,18 @@ var map = L.map("map").setView([35.46, -93.50], 3);
     	.openOn(map);
 
     }
+var arcgisOnline = L.esri.Geocoding.arcgisOnlineProvider();
 
-
+var searchControl = L.esri.Geocoding.geosearch({
+    providers: [
+      arcgisOnline,
+      L.esri.Geocoding.mapServiceProvider({
+        label: 'States and Counties',
+        url: 'https://sampleserver6.arcgisonline.com/arcgis/rest/services/Census/MapServer',
+        layers: [2, 3],
+        searchFields: ['NAME', 'STATE_NAME']
+        })
+      ]
+    }).addTo(map);
 
   map.on('click', onMapClick);

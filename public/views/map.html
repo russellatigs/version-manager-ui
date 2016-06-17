@@ -3,11 +3,14 @@
   <!-- Latest compiled and minified CSS -->
   <link rel="stylesheet" type="text/css" href="../bower_components/bootstrap/dist/css/bootstrap.min.css"/>
   <link rel="stylesheet" type="text/css" href="../stylesheets/main.css"/>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/leaflet.esri.geocoder/2.1.0/esri-leaflet-geocoder.css">
   <!-- Load Leaflet from CDN-->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/leaflet/1.0.0-rc.1/leaflet.css" />
   <script src="https://cdn.jsdelivr.net/leaflet/1.0.0-rc.1/leaflet-src.js"></script>
   <!-- Load Esri Leaflet from CDN -->
   <script src="https://cdn.jsdelivr.net/leaflet.esri/2.0.0/esri-leaflet.js"></script>
+  <script src="https://cdn.jsdelivr.net/leaflet.esri.geocoder/2.1.0/esri-leaflet-geocoder.js"></script>
+
   <!--<script type="text/javascript" src="./src/util/NumberFormatter.js"></script> -->
   <!--<script type="text/javascript" src="./src/Control.Coordinates.js"></script> -->
   <style>
@@ -84,6 +87,10 @@
                         <div class="form-group">
                             <h3>Latitude</h3>
                             <input class="form-control" placeholder="Enter latitude coordinates" name"latitude" id="job-latitude">
+                        </div>
+                        <div class="form-group">
+                            <h3>Provider</h3>
+                            <input class="form-control" placeholder="Enter name of provider" name"provider" id="job-provider">
                         </div>
                         <!-- <div class="form-group">
                             <h3>Provider</h3>
