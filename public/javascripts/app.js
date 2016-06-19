@@ -1,5 +1,16 @@
 $(document).ready(function () {
+  $('.search-form #search').hideseek({
+  highlight: true,
+  nodata: 'No results found'
+});
 
+
+ var jobTypes = {
+   'NEW': 'new-job',
+   'EXPORTED': 'exported',
+   'CHECKEDIN': 'checked-in',
+   'POSTED': 'posted'
+ }
     //  Gets jobs and populates data
     $.ajax({
         type: 'GET',
@@ -23,9 +34,18 @@ $(document).ready(function () {
                 var status = value.status;
                 var provider = value.provider;
 
-                $("#jobs tbody").append("<tr data-id="+id+"><td>"+ status +"</td><td>" + jobName + "</td><td>" + createdBy + "</td><td>" + latitude + "</td><td>" + longitude + "</td><td>" + provider + "</td><td>  <button class='btn btn-primary btn-small job-export' > <span class='glyphicon glyphicon-send' aria-hidden='true'></span> Export </button> <button class='btn btn-info btn-small job-checkin' type='submit'> <span class='glyphicon glyphicon-ok' aria-hidden='true'></span> Check In </button> <button class='btn btn-warning btn-small job-gold' type='submit'> <span class='glyphicon glyphicon-edit' aria-hidden='true'></span> Post to Gold </button> <button class='btn btn-danger btn-small delete-job'> <span class='glyphicon glyphicon-remove' aria-hidden='true'></span> Delete </button> </td></tr> ");
+                $("#jobs tbody").append("<tr class='"+jobTypes[value.status]+"' data-id="+id+"><td>"+ status +"</td><td>" + jobName + "</td><td>" + createdBy + "</td><td>" + latitude + "</td><td>" + longitude + "</td><td>" + provider + "</td><td>  <button class='btn btn-primary btn-small job-export' id='export' > <span class='glyphicon glyphicon-send' aria-hidden='true'></span> Export </button> <button class='btn btn-info btn-small job-checkin' type='submit' id='checkin'> <span class='glyphicon glyphicon-ok' aria-hidden='true'></span> Check In </button> <button class='btn btn-warning btn-small job-gold' type='submit' id='gold'> <span class='glyphicon glyphicon-edit' aria-hidden='true'></span> Post to Gold </button> <button class='btn btn-danger btn-small delete-job' id='delete'> <span class='glyphicon glyphicon-remove' aria-hidden='true'></span> Delete </button> </td></tr> ");
+
 
             });
+
+            // disabling delete buttons for posted jobs
+
+            $("."+jobTypes['POSTED']+" #delete").attr('disabled', 'disabled');
+            $("."+jobTypes['NEW']+" #checkin, #gold").attr('disabled', 'disabled');
+            $("."+jobTypes['EXPORTED']+" #export, #gold").attr('disabled', 'disabled');
+
+
 
         },
 
