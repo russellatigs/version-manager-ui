@@ -82,7 +82,7 @@ $('.btn').on('click', function() {
 
             $.ajax({
                 type: 'DELETE',
-                url: "http://ec2-54-172-145-108.compute-1.amazonaws.com:8888/jobs"+jobId,
+                url: "http://ec2-54-172-145-108.compute-1.amazonaws.com:8888/jobs/"+jobId,
                 headers:{"VMUser":"hmoreno",
                 'Accept': 'application/json',
                 'Content-Type': 'application/json' },
@@ -121,14 +121,14 @@ $('.btn').on('click', function() {
 
             $.ajax({
                 type:'GET',
-                url: "http://ec2-54-152-233-204.compute-1.amazonaws.com:8888/jobs/"+jobId+"/file/",
+                url: "http://ec2-54-172-145-108.compute-1.amazonaws.com:8888/jobs/"+jobId+"/file/",
                 headers: {
                     "VMUser": "hmoreno",
                     'Accept': 'application/json',
                     'Content-Type': 'application/json'
                 },
                 dataType: 'json',
-                timeout: 5000,
+                timeout: 3000,
                 crossDomain: true,
 
             }).done(function (data) {
@@ -144,6 +144,10 @@ $('.btn').on('click', function() {
                     console.log("complete");
                 });
 
+          setTimeout(function(){
+            location.reload(true); }, 2000);
+
+
 
         });
 
@@ -157,12 +161,12 @@ $('.btn').on('click', function() {
            console.log('hello');
              $.ajax({
                  type: 'POST',
-                 url: "http://ec2-54-152-233-204.compute-1.amazonaws.com:8888/jobs/"+jobId+"/file/",
+                 url: "http://ec2-54-172-145-108.compute-1.amazonaws.com:8888/jobs/"+jobId,
                  headers:{"VMUser":"hmoreno",
                  'Accept': 'application/json',
                  'Content-Type': 'application/json' },
                  dataType: 'json',
-                 timeout:9000,
+                 timeout: 3000,
                  crossDomain: true
                }).done(function (data) {
                    console.log(data);
@@ -178,6 +182,9 @@ $('.btn').on('click', function() {
                        console.log("complete");
                    });
 
+                   setTimeout(function(){
+                     location.reload(true); }, 2000);
+
                });
 
 
@@ -191,7 +198,7 @@ $('.btn').on('click', function() {
            console.log('gold');
              $.ajax({
                  type: 'PUT',
-                 url: 'http://ec2-54-152-233-204.compute-1.amazonaws.com:8888/jobs/'+jobId,
+                 url: 'http://ec2-54-172-145-108.compute-1.amazonaws.com:8888/jobs/'+jobId,
                  headers:{"VMUser":"hmoreno",
                  'Accept': 'application/json',
                  'Content-Type': 'application/json' },
@@ -203,7 +210,8 @@ $('.btn').on('click', function() {
                  },
 
              });
-             return false;
+             setTimeout(function(){
+               location.reload(true); }, 2000);
          });
       }).done(function (data) {
           console.log(data);
@@ -220,9 +228,9 @@ $('.btn').on('click', function() {
    //Creates a Job
    $('#job-form').submit(function(e) {
      e.preventDefault();
-       $.ajax({
+         $.ajax({
            type: 'POST',
-           url: 'http://ec2-54-152-233-204.compute-1.amazonaws.com:8888/jobs',
+           url: 'http://ec2-54-172-145-108.compute-1.amazonaws.com:8888/jobs',
            headers:{"VMUser":"hmoreno",
            'Accept': 'application/json',
            'Content-Type': 'application/json' },
@@ -237,7 +245,13 @@ $('.btn').on('click', function() {
                    latitude:  $("#job-latitude").val(),
                    provider:  $("#job-provider").val()})
        });
-       return false;
+
+         return false;
+       setTimeout(function(){
+         location.reload(true); }, 2000);
+
+
+
    });
 
 
