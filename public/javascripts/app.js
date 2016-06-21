@@ -1,10 +1,31 @@
 $(document).ready(function () {
+
+  //search functionality
   $('.search-form #search').hideseek({
   highlight: true,
   nodata: 'No results found'
 });
 
+//loading button snippet and modal dismissal
+$('.btn').on('click', function() {
+    var $this = $(this);
+    $this.button('loading');
+    setTimeout(function() {
+    $this.button('reset');
 
+  }, 1000);
+  $(".job-modal").modal('hide');
+});
+
+// $('.btn').on('click', function() {
+//   console.log('Im working');
+//     setTimeout(function() {
+//       $('.job-modal').modal('hide');
+//     }, 1000);
+// });
+
+
+//jobtypes array
  var jobTypes = {
    'NEW': 'new-job',
    'EXPORTED': 'exported',
@@ -14,8 +35,8 @@ $(document).ready(function () {
     //  Gets jobs and populates data
     $.ajax({
         type: 'GET',
-        url: "http://ec2-54-152-233-204.compute-1.amazonaws.com:8888/jobs",
-        timeout: 5000,
+        url: "http://ec2-54-172-145-108.compute-1.amazonaws.com:8888/jobs",
+        timeout: 8000,
         crossDomain: true,
         dataType: 'json',
         data: {},
@@ -49,6 +70,7 @@ $(document).ready(function () {
 
         },
 
+
         //Responses
     }).done(function (data) {
         console.log(data);
@@ -60,7 +82,7 @@ $(document).ready(function () {
 
             $.ajax({
                 type: 'DELETE',
-                url: "http://ec2-54-152-233-204.compute-1.amazonaws.com:8888/jobs/"+jobId,
+                url: "http://ec2-54-172-145-108.compute-1.amazonaws.com:8888/jobs"+jobId,
                 headers:{"VMUser":"hmoreno",
                 'Accept': 'application/json',
                 'Content-Type': 'application/json' },

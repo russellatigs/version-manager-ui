@@ -3,7 +3,9 @@
 <!-- Latest compiled and minified CSS -->
 <link rel="stylesheet" type="text/css" href="../bower_components/bootstrap/dist/css/bootstrap.min.css"/>
 <link rel="stylesheet" type="text/css" href="../stylesheets/main.css"/>
-<link rel="stylesheet" type="text/css" href="../stylesheets/jquery.dynatable.css"/>
+<script src="https://use.fontawesome.com/7437b176cd.js"></script>
+
+
 
 
 
@@ -58,8 +60,9 @@
                   </form>
 
           </div>
-    <div class="row">
-        <table class="table table-striped table-bordered" id="jobs">
+
+    <div class="row" >
+        <table class="table table-striped table-bordered" id="jobs" >
             <thead>
             <tr>
                 <th>Status</th>
@@ -220,7 +223,7 @@
                            </div> -->
                            <div class="modal-footer">
                                <button data-dismiss="modal" class="btn">Cancel</button>
-                               <button type="submit" id="add" class="btn btn-primary">Save changes</button>
+                               <button type="submit"  value="Refresh Page" onClick="window.location.reload()" class="btn btn-primary" id="load" data-loading-text="<i class='fa fa-spinner fa-spin '></i>Submitting your changes" >Save changes</button>
                            </div>
                        </form>
                        <!--Ends Form-->
@@ -233,12 +236,15 @@
 
 
 
+
 </body>
 <script src="../bower_components/jquery/dist/jquery.min.js"></script>
 <script src="../bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
 <script src="../javascripts/app.js"></script>
-<script src="../javascripts/jquery.dynatable.js"></script>
 <script src="../javascripts/jquery.quicksearch.js"></script>
+
+
+
 
 
 </html >

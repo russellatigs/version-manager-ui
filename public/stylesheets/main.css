@@ -99,3 +99,8 @@ body { margin:0;
   left: initial;
   font-size: 14px;
 }
+
+.navbar-inverse .navbar-nav>.active>a, .navbar-inverse .navbar-nav>.active>a:focus, .navbar-inverse .navbar-nav>.active>a:hover {
+    color: #fff;
+    background-color: #222;
+}
