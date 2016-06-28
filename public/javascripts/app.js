@@ -55,16 +55,16 @@ $('.btn').on('click', function() {
                 var status = value.status;
                 var provider = value.provider;
 
-                $("#jobs tbody").append("<tr class='"+jobTypes[value.status]+"' data-id="+id+"><td>"+ status +"</td><td>" + jobName + "</td><td>" + createdBy + "</td><td>" + latitude + "</td><td>" + longitude + "</td><td>" + provider + "</td><td>  <button class='btn btn-primary btn-small job-export' id='export' > <span class='glyphicon glyphicon-send' aria-hidden='true'></span> Export </button> <button class='btn btn-info btn-small job-checkin' type='submit' id='checkin'> <span class='glyphicon glyphicon-ok' aria-hidden='true'></span> Check In </button> <button class='btn btn-warning btn-small job-gold' type='submit' id='gold'> <span class='glyphicon glyphicon-edit' aria-hidden='true'></span> Post to Gold </button> <button class='btn btn-danger btn-small delete-job' id='delete'> <span class='glyphicon glyphicon-remove' aria-hidden='true'></span> Delete </button> </td></tr> ");
+                $("#jobs tbody").append("<tr class='"+jobTypes[value.status]+"' data-id="+id+"><td>"+ status +"</td><td>" + jobName + "</td><td>" + createdBy + "</td><td>" + latitude + "</td><td>" + longitude + "</td><td>" + provider + "</td><td>  <button class='btn btn-primary btn-small job-export export'  > <span class='glyphicon glyphicon-send' aria-hidden='true'></span> Export </button> <button class='btn btn-info btn-small job-checkin' type='submit' id='checkin'> <span class='glyphicon glyphicon-ok' aria-hidden='true'></span> Check In </button> <button class='btn btn-warning btn-small job-gold' type='submit' id='gold'> <span class='glyphicon glyphicon-edit' aria-hidden='true'></span> Post to Gold </button> <button class='btn btn-danger btn-small delete-job' id='delete'> <span class='glyphicon glyphicon-remove' aria-hidden='true'></span> Delete </button> </td></tr> ");
 
 
             });
 
             // disabling delete buttons for posted jobs
 
-            $("."+jobTypes['POSTED']+" #delete").attr('disabled', 'disabled');
+            $("."+jobTypes['POSTED']+" #delete, ."+jobTypes['POSTED']+" .export, ."+jobTypes['POSTED']+" #checkin").attr('disabled', 'disabled');
             $("."+jobTypes['NEW']+" #checkin, #gold").attr('disabled', 'disabled');
-            $("."+jobTypes['EXPORTED']+" #export, #gold").attr('disabled', 'disabled');
+            $("."+jobTypes['EXPORTED']+" export, #gold").attr('disabled', 'disabled');
 
 
 
@@ -121,13 +121,13 @@ $('.btn').on('click', function() {
 
             $.ajax({
                 type:'GET',
-                url: "http://ec2-54-172-145-108.compute-1.amazonaws.com:8888/jobs/"+jobId+"/file/",
+                url: "http://ec2-54-172-145-108.compute-1.amazonaws.com:8888/jobs/"+jobId+"/file",
                 headers: {
                     "VMUser": "hmoreno",
                     'Accept': 'application/json',
                     'Content-Type': 'application/json'
                 },
-                dataType: 'json',
+
                 timeout: 3000,
                 crossDomain: true,
 
@@ -136,16 +136,17 @@ $('.btn').on('click', function() {
                 console.log("result recieved");
 
 
-            }).fail(function (err) {
-                    console.log(err);
+            }).fail(function ( jqXHR, textStatus, errorThrown) {
+
+                    console.log(errorThrown);
                     console.log("error")
                 })
                 .always(function () {
                     console.log("complete");
                 });
 
-          setTimeout(function(){
-            location.reload(true); }, 2000);
+          // setTimeout(function(){
+          //   location.reload(true); }, 2000);
 
 
 
@@ -247,9 +248,9 @@ $('.btn').on('click', function() {
        });
 
          return false;
-       setTimeout(function(){
-         location.reload(true); }, 2000);
-
+      //  setTimeout(function(){
+      //    location.reload(true); }, 2000);
+       //
 
 
    });
