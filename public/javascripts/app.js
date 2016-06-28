@@ -55,7 +55,7 @@ $('.btn').on('click', function() {
                 var status = value.status;
                 var provider = value.provider;
 
-                $("#jobs tbody").append("<tr class='"+jobTypes[value.status]+"' data-id="+id+"><td>"+ status +"</td><td>" + jobName + "</td><td>" + createdBy + "</td><td>" + latitude + "</td><td>" + longitude + "</td><td>" + provider + "</td><td>  <button class='btn btn-primary btn-small job-export export'  > <span class='glyphicon glyphicon-send' aria-hidden='true'></span> Export </button> <button class='btn btn-info btn-small job-checkin' type='submit' id='checkin'> <span class='glyphicon glyphicon-ok' aria-hidden='true'></span> Check In </button> <button class='btn btn-warning btn-small job-gold' type='submit' id='gold'> <span class='glyphicon glyphicon-edit' aria-hidden='true'></span> Post to Gold </button> <button class='btn btn-danger btn-small delete-job' id='delete'> <span class='glyphicon glyphicon-remove' aria-hidden='true'></span> Delete </button> </td></tr> ");
+                $("#jobs tbody").append("<tr class='"+jobTypes[value.status]+"' data-id="+id+"><td>"+ status +"</td><td>" + jobName + "</td><td>" + createdBy + "</td><td>" + latitude + "</td><td>" + longitude + "</td><td>" + provider + "</td><td>  <button class='btn btn-primary btn-small job-export export'  > <span class='glyphicon glyphicon-send' aria-hidden='true'></span> Export </button> <button class='btn btn-info btn-small job-checkin' type='submit' id='checkin'> <span class='glyphicon glyphicon-ok' aria-hidden='true'></span> Check In </button> <button class='btn btn-warning btn-small job-gold' type='submit' id='gold'> <span class='glyphicon glyphicon-edit' aria-hidden='true'></span> Post to Gold </button> <button class='btn btn-danger btn-small delete-job' id='delete'> <span class='glyphicon glyphicon-remove' aria-hidden='true'></span> Delete </button> </td> <td class='downloads'> <a href='' download> GML FILE</a> </td></tr> ");
 
 
             });
@@ -134,6 +134,11 @@ $('.btn').on('click', function() {
             }).done(function (data) {
                 console.log(data);
                 console.log("result recieved");
+                $('.downloads').on('click', function(){
+                  console.log('Hey bro you are close')
+                  $.fileDownload('http://ec2-54-172-145-108.compute-1.amazonaws.com:8888/jobs/'+jobId+'/file');
+
+                });
 
 
             }).fail(function ( jqXHR, textStatus, errorThrown) {
