@@ -17,6 +17,8 @@ $('.btn').on('click', function() {
   $(".job-modal").modal('hide');
 });
 
+
+
 // $('.btn').on('click', function() {
 //   console.log('Im working');
 //     setTimeout(function() {
@@ -55,7 +57,7 @@ $('.btn').on('click', function() {
                 var status = value.status;
                 var provider = value.provider;
 
-                $("#jobs tbody").append("<tr class='"+jobTypes[value.status]+"' data-id="+id+"><td>"+ status +"</td><td>" + jobName + "</td><td>" + createdBy + "</td><td class='ymin'>" + latitude + "</td><td class='xmin'>" + longitude + "</td><td>" + provider + "</td><td>  <button class='btn btn-primary btn-small job-export export'  > <span class='glyphicon glyphicon-send' aria-hidden='true'></span> Export </button> <button class='btn btn-info btn-small job-checkin' type='submit' id='checkin'> <span class='glyphicon glyphicon-ok' aria-hidden='true'></span> Check In </button> <button class='btn-info btn-small'><span><input id='fileupload' type='file' name='files[]' multiple></span></button> <button class='btn btn-warning btn-small job-gold' type='submit' id='gold'> <span class='glyphicon glyphicon-edit' aria-hidden='true'></span> Post to Gold </button> <button class='btn btn-danger btn-small delete-job' id='delete'> <span class='glyphicon glyphicon-remove' aria-hidden='true'></span> Delete </button> </td> </tr> ");
+                $("#jobs tbody").append("<tr class='"+jobTypes[value.status]+"' data-id="+id+"><td>"+ status +"</td><td>" + jobName + "</td><td>" + createdBy + "</td><td class='ymin'>" + latitude + "</td><td class='xmin'>" + longitude + "</td><td>" + provider + "</td><td>  <button class='btn btn-primary btn-small job-export export'> <span class='glyphicon glyphicon-send' aria-hidden='true'></span> Export </button>  <button class='btn btn-warning btn-small job-gold' type='submit' id='gold'> <span class='glyphicon glyphicon-edit' aria-hidden='true'></span> Post to Gold </button> <button class='btn btn-danger btn-small delete-job' id='delete'> <span class='glyphicon glyphicon-remove' aria-hidden='true'></span> Delete </button> </td><td> <label><span>Attachment</span> <input class='input-field' type='file' name='file_attach' ><button class='btn btn-primary job-checkin' type='submit'>Check In </button></label></td> </tr> ");
 
 
             });
@@ -138,32 +140,9 @@ $('.btn').on('click', function() {
             }).done(function (data) {
                 console.log(data);
                 console.log("result recieved");
-                // $('.downloads').on('click', function(){
 
-                  // $.fileDownload('http://ec2-54-172-145-108.compute-1.amazonaws.com:8888/jobs/'+jobId+'/file')
-                  // .done(function () { console.log('File download a success!'); })
-                  // .fail(function () { console.log('File download failed!'); });
-                  //
-                  // var httpChannel = subject.QueryInterface(Ci.nsIHttpChannel);
-                  // httpChannel.setRequestHeader("VMUSer", "hmoreno", false);
-
-
-
-                  //
-                  // alert('http://ec2-54-172-145-108.compute-1.amazonaws.com:8888/jobs/'+jobId+'/file');
-                  // window.location.assign('http://ec2-54-172-145-108.compute-1.amazonaws.com:8888/jobs/'+jobId+'/file');
-                  //
-                  //
-
-
-                  // httpChannel.setRequestHeader("VMUser", "hmoreno", false);
-
-
-                  var file = new File([data], "hello world.txt", {type: "text/plain;charset=utf-8"});
-                  saveAs(file);
-
-                // });
-
+                var file = new File([data], "hello world.gml", {type: "text/plain;charset=utf-8"});
+                saveAs(file);
 
             }).fail(function ( jqXHR, textStatus, errorThrown) {
 
@@ -177,8 +156,6 @@ $('.btn').on('click', function() {
           // setTimeout(function(){
           //   location.reload(true); }, 2000);
 
-
-
         });
 
     }).done(function (data) {
@@ -186,22 +163,49 @@ $('.btn').on('click', function() {
         // console.log("result recieved");
 
         //Check In a Job
-         $('.job-checkin').on('click', function(e) {
+         $('.job-checkin').on('click', function(event) {
+           event.preventDefault();
            var jobId = $(this).closest('tr').attr("data-id");
+           //data to be sent to server
+           var m_data = new FormData();
+           m_data.append( 'file_attach', $('input[name=file_attach]')[0].files[0]);
+
+          //not tested code to upload files jqueryui, jquery-file-upload, and jqueryiframe
+          //  $('.file-upload').fileupload({
+          //  dataType: 'json',
+          //      done: function (e, data) {
+          //           $.each(data.result.files, function (index, file) {
+          //           $('<p/>').text(file.name).appendTo(document.body);
+          //          });
+          //       }
+          //     });
            console.log('hello');
              $.ajax({
-                 type: 'POST',
                  url: "http://ec2-54-172-145-108.compute-1.amazonaws.com:8888/jobs/"+jobId,
+                 type: 'POST',
+                 data: m_data,
                  headers:{"VMUser":"hmoreno",
-                 'Accept': 'application/json',
-                 'Content-Type': 'application/json' },
+                           "Content-Type": "application/json"},
                  dataType: 'json',
                  timeout: 3000,
-                 crossDomain: true
+                 crossDomain: true,
+                 contentType: false,
+                 processData: false
+
                }).done(function (data) {
                    console.log(data);
-                   data: JSON.stringify,
                    console.log("result recieved");
+
+                   //load json data from server and output message
+                // if(response.type == 'error'){
+                  //load json data from server and output message
+                //     output = '<div class="error">'+response.text+'</div>';
+                // }else{
+                //     output = '<div class="success">'+response.text+'</div>';
+                // }
+                // $("#contact_form #contact_results").hide().html(output).slideDown();
+
+
 
 
                }).fail(function (err) {
