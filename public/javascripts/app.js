@@ -47,14 +47,16 @@ $('.btn').on('click', function() {
                 var status = value.status;
                 var provider = value.provider;
                 var jid = value.jobid;
-                $("#jobs tbody").append("<tr class='"+jobTypes[value.status]+"' data-id="+id+"><td>"+ status +"</td><td>" + jobName + "</td><td>" + createdBy + "</td><td class='ymin'>" + latitude + "</td><td class='xmin'>" + longitude + "</td><td>" + provider + "</td><td>  <button class='btn btn-primary btn-small job-export export'> <span class='glyphicon glyphicon-send' aria-hidden='true'></span> Export </button>  <button class='btn btn-warning btn-small job-gold' type='submit' id='gold'> <span class='glyphicon glyphicon-edit' aria-hidden='true'></span> Post to Gold </button> <button class='btn btn-danger btn-small delete-job' id='delete'> <span class='glyphicon glyphicon-remove' aria-hidden='true'></span> Delete </button> </td><td> <label><span>Attachment</span><form enctype='multipart/form-data' method='post' accept-charset='utf-8'> <input class='input-field' type='file' name='file_attach' ><button class='btn btn-primary job-checkin' type='submit'>Check In </button><input type='hidden' class='jid' value="+jid+"></form></label></td> </tr> ");
+                $("#jobs tbody").append("<tr class='"+jobTypes[value.status]+"' data-id="+id+"><td>"+ status +"</td><td>" + jobName + "</td><td>" + createdBy + "</td><td class='ymin'>" + latitude + "</td><td class='xmin'>" + longitude + "</td><td>" + provider + "</td><td>  <button class='btn btn-primary btn-small job-export export'> <span class='glyphicon glyphicon-send' aria-hidden='true'></span> Export </button>  <button class='btn btn-warning btn-small job-gold gold' type='submit'> <span class='glyphicon glyphicon-edit' aria-hidden='true'></span> Post to Gold </button> <button class='btn btn-danger btn-small delete-job delete' > <span class='glyphicon glyphicon-remove' aria-hidden='true'></span> Delete </button> </td><td> <label><span>Attachment</span><form enctype='multipart/form-data' method='post' accept-charset='utf-8'> <input class='input-field' type='file' name='file_attach' ><button class='btn btn-primary job-checkin checkin' type='submit'>Check In </button><input type='hidden' class='jid' value="+jid+"></form></label></td> </tr> ");
 
 
             });
             // disabling delete buttons for posted jobs
-            $("."+jobTypes['POSTED']+" #delete, ."+jobTypes['POSTED']+" .export, ."+jobTypes['POSTED']+" #checkin").attr('disabled', 'disabled');
-            $("."+jobTypes['NEW']+" #checkin, #gold").attr('disabled', 'disabled');
-            $("."+jobTypes['EXPORTED']+" export, #gold").attr('disabled', 'disabled');
+            $("."+jobTypes['POSTED']+" .delete").attr('disabled', 'disabled');
+            $("."+jobTypes['NEW']+" .checkin").attr('disabled', 'disabled');
+            $("."+jobTypes['EXPORTED']+" .export").attr('disabled', 'disabled');
+            $("."+jobTypes['CHECKEDIN']+".export").attr('disabled', 'disabled');
+
 
         },
         //Responses
