@@ -17,16 +17,6 @@ $('.btn').on('click', function() {
   $(".job-modal").modal('hide');
 });
 
-
-
-// $('.btn').on('click', function() {
-//   console.log('Im working');
-//     setTimeout(function() {
-//       $('.job-modal').modal('hide');
-//     }, 1000);
-// });
-
-
 //jobtypes array
  var jobTypes = {
    'NEW': 'new-job',
@@ -56,23 +46,17 @@ $('.btn').on('click', function() {
                 var id = value.jobid;
                 var status = value.status;
                 var provider = value.provider;
-
-                $("#jobs tbody").append("<tr class='"+jobTypes[value.status]+"' data-id="+id+"><td>"+ status +"</td><td>" + jobName + "</td><td>" + createdBy + "</td><td class='ymin'>" + latitude + "</td><td class='xmin'>" + longitude + "</td><td>" + provider + "</td><td>  <button class='btn btn-primary btn-small job-export export'> <span class='glyphicon glyphicon-send' aria-hidden='true'></span> Export </button>  <button class='btn btn-warning btn-small job-gold' type='submit' id='gold'> <span class='glyphicon glyphicon-edit' aria-hidden='true'></span> Post to Gold </button> <button class='btn btn-danger btn-small delete-job' id='delete'> <span class='glyphicon glyphicon-remove' aria-hidden='true'></span> Delete </button> </td><td> <label><span>Attachment</span> <input class='input-field' type='file' name='file_attach' ><button class='btn btn-primary job-checkin' type='submit'>Check In </button></label></td> </tr> ");
+                var jid = value.jobid;
+                $("#jobs tbody").append("<tr class='"+jobTypes[value.status]+"' data-id="+id+"><td>"+ status +"</td><td>" + jobName + "</td><td>" + createdBy + "</td><td class='ymin'>" + latitude + "</td><td class='xmin'>" + longitude + "</td><td>" + provider + "</td><td>  <button class='btn btn-primary btn-small job-export export'> <span class='glyphicon glyphicon-send' aria-hidden='true'></span> Export </button>  <button class='btn btn-warning btn-small job-gold' type='submit' id='gold'> <span class='glyphicon glyphicon-edit' aria-hidden='true'></span> Post to Gold </button> <button class='btn btn-danger btn-small delete-job' id='delete'> <span class='glyphicon glyphicon-remove' aria-hidden='true'></span> Delete </button> </td><td> <label><span>Attachment</span><form enctype='multipart/form-data' method='post' accept-charset='utf-8'> <input class='input-field' type='file' name='file_attach' ><button class='btn btn-primary job-checkin' type='submit'>Check In </button><input type='hidden' class='jid' value="+jid+"></form></label></td> </tr> ");
 
 
             });
-
             // disabling delete buttons for posted jobs
-
             $("."+jobTypes['POSTED']+" #delete, ."+jobTypes['POSTED']+" .export, ."+jobTypes['POSTED']+" #checkin").attr('disabled', 'disabled');
             $("."+jobTypes['NEW']+" #checkin, #gold").attr('disabled', 'disabled');
             $("."+jobTypes['EXPORTED']+" export, #gold").attr('disabled', 'disabled');
 
-
-
         },
-
-
         //Responses
     }).done(function (data) {
         console.log(data);
@@ -110,12 +94,9 @@ $('.btn').on('click', function() {
                 .always(function () {
                     console.log("complete");
                 });
-
         });
 
     }).done(function (data) {
-        // console.log(data);
-        // console.log("result recieved");
 
         //Export a Job
         $(".job-export").on('click', function(e) {
@@ -153,8 +134,8 @@ $('.btn').on('click', function() {
                     console.log("complete");
             });
 
-          // setTimeout(function(){
-          //   location.reload(true); }, 2000);
+          setTimeout(function(){
+            location.reload(true); }, 2000);
 
         });
 
@@ -168,24 +149,18 @@ $('.btn').on('click', function() {
            var jobId = $(this).closest('tr').attr("data-id");
            //data to be sent to server
            var m_data = new FormData();
-           m_data.append( 'file_attach', $('input[name=file_attach]')[0].files[0]);
 
-          //not tested code to upload files jqueryui, jquery-file-upload, and jqueryiframe
-          //  $('.file-upload').fileupload({
-          //  dataType: 'json',
-          //      done: function (e, data) {
-          //           $.each(data.result.files, function (index, file) {
-          //           $('<p/>').text(file.name).appendTo(document.body);
-          //          });
-          //       }
-          //     });
-           console.log('hello');
-             $.ajax({
+           var fname = $(this).prev('input').val();
+           var size = $(this).prev('input')[0].files[0].size;
+           var ext = fname.substr(fname.lastIndexOf('.') + 1);
+
+              if (fname != '' && size <10000 && ext=="gml") {
+                m_data.append('file',$(this).prev('input')[0].files[0]);
+                $.ajax({
                  url: "http://ec2-54-172-145-108.compute-1.amazonaws.com:8888/jobs/"+jobId,
                  type: 'POST',
                  data: m_data,
-                 headers:{"VMUser":"hmoreno",
-                           "Content-Type": "application/json"},
+                 headers:{"VMUser":"hmoreno"},
                  dataType: 'json',
                  timeout: 3000,
                  crossDomain: true,
@@ -196,36 +171,28 @@ $('.btn').on('click', function() {
                    console.log(data);
                    console.log("result recieved");
 
-                   //load json data from server and output message
-                // if(response.type == 'error'){
-                  //load json data from server and output message
-                //     output = '<div class="error">'+response.text+'</div>';
-                // }else{
-                //     output = '<div class="success">'+response.text+'</div>';
-                // }
-                // $("#contact_form #contact_results").hide().html(output).slideDown();
-
-
-
 
                }).fail(function (err) {
-                       console.log(err);
+                       console.log(err.responseText);
                        console.log("error")
                    })
                    .always(function () {
                        console.log("complete");
+                     //   setTimeout(function(){
+                     // location.reload(true); }, 2000);
                    });
+              } else{
+              	alert("File size must be smaller than 100KB and in .gml format.");
+              }
 
+           console.log('hello');
                    setTimeout(function(){
                      location.reload(true); }, 2000);
 
                });
 
-
-
     }).done(function (data) {
-        // console.log(data);
-        // console.log("result recieved");
+
         //Post a Job to Gold
          $('.job-gold').on('click', function(e) {
            var jobId = $(this).closest('tr').attr("data-id");
@@ -233,9 +200,7 @@ $('.btn').on('click', function() {
              $.ajax({
                  type: 'PUT',
                  url: 'http://ec2-54-172-145-108.compute-1.amazonaws.com:8888/jobs/'+jobId,
-                 headers:{"VMUser":"hmoreno",
-                 'Accept': 'application/json',
-                 'Content-Type': 'application/json' },
+                 headers:{"VMUser":"hmoreno"},
                  dataType: 'json',
                  timeout:3000,
                  crossDomain: true,
@@ -248,8 +213,6 @@ $('.btn').on('click', function() {
                location.reload(true); }, 2000);
          });
       }).done(function (data) {
-          // console.log(data);
-          // console.log("result recieved");
 
 
       }).fail(function (err) {
@@ -278,72 +241,13 @@ $('.btn').on('click', function() {
                    longitude: $("#job-longitude").val(),
                    latitude:  $("#job-latitude").val(),
                    provider:  $("#job-provider").val()})
+
        });
 
-         return false;
-      //  setTimeout(function(){
-      //    location.reload(true); }, 2000);
-       //
-
+       setTimeout(function(){
+       location.reload(true); }, 2000);
 
    });
 
 
-
-    //Check In a Job
-    //  $('.job-checkin').on('click', function(e) {
-    //    var jobId = $(this).closest('tr').attr("data-id");
-    //    console.log('hello');
-    //      $.ajax({
-    //          type: 'POST',
-    //          url: 'http://ec2-54-152-233-204.compute-1.amazonaws.com:8888/jobs/',
-    //          headers:{"VMUser":"hmoreno",
-    //          'Accept': 'application/json',
-    //          'Content-Type': 'application/json' },
-    //          dataType: 'json',
-    //          timeout:3000,
-    //          crossDomain: true
-    //        }).done(function (data) {
-    //            console.log(data);
-    //            data: JSON.stringify,
-    //            console.log("result recieved");
-     //
-     //
-    //        }).fail(function (err) {
-    //                console.log(err);
-    //                console.log("error")
-    //            })
-    //            .always(function () {
-    //                console.log("complete");
-    //            });
-
-
-    //          success: function(data){
-    //            console.log(data);
-    //          },
-    //          data: JSON.stringify
-    //      });
-    //      return false;
-    //  });
-
-     //Post a Job to Gold
-      // $('.job-gold').on('click', function(e) {
-      //   var jobId = $(this).closest('tr').attr("data-id");
-      //   console.log('hello');
-      //     $.ajax({
-      //         type: 'PUT',
-      //         url: 'http://ec2-54-152-233-204.compute-1.amazonaws.com:8888/jobs/'+jobId,
-      //         headers:{"VMUser":"hmoreno",
-      //         'Accept': 'application/json',
-      //         'Content-Type': 'application/json' },
-      //         dataType: 'json',
-      //         timeout:3000,
-      //         crossDomain: true,
-      //         success: function(data){
-      //           console.log(data);
-      //         },
-      //
-      //     });
-      //     return false;
-      // });
 });
