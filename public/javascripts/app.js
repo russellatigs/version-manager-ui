@@ -250,6 +250,4 @@ $('.btn').on('click', function() {
        location.reload(true); }, 2000);
 
    });
-
-
 });
