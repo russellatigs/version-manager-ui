@@ -1,3 +1,4 @@
+//Creates Map from Esri api
 var map = L.map("map").setView([35.46, -93.50], 3);
 
   var layer = L.esri.basemapLayer("Topographic", {
@@ -61,8 +62,9 @@ var searchControl = L.esri.Geocoding.geosearch({
         })
       ]
     }).addTo(map);
-//Grid js mapping
 
+
+//This section creates the grid for the map
 
 L.Grid = L.LayerGroup.extend({
 	options: {
@@ -302,6 +304,47 @@ L.grid = function (options) {
 };
 
 L.grid().addTo(map);
+//This is the ajax request for the jobs data
+$.ajax({
+    type: 'GET',
+    url: "http://ec2-54-172-145-108.compute-1.amazonaws.com:8888/jobs",
+    timeout: 8000,
+    crossDomain: true,
+    dataType: 'json',
+    data: {},
+    headers: {
+        "VMUser": "hmoreno"
+    },
+    //Renders data to view
+    success: function (data) {
+      console.log(data);
 
+        // console.log(data.length);
+        data.forEach(function (value) {
+            var jobName = value.name;
+            var createdBy = value.createdby;
+            var latitude = value.latitude;
+            var longitude = value.longitude;
+            var id = value.jobid;
+            var status = value.status;
+            var provider = value.provider;
 
-  map.on('click', onMapClick);
+            var marker = L.marker([value.latitude, value.longitude]).addTo(map);
+            marker.bindPopup("<b>Job Name: "+jobName+"</b><br>Created By: "+createdBy+"<br>Latitude: "+latitude+"<br>Longitude: "+longitude+"<br>Status: "+status+"<br>Provider: "+provider+".");
+            marker.on('mouseover', function (e) {
+            this.openPopup();
+            });
+            marker.on('mouseout', function (e) {
+            this.closePopup();
+          });
+            var circle = L.circle([value.latitude, value.longitude], 500, {
+             color: 'red',
+             fillColor: '#f03',
+             fillOpacity: 1.5 }).addTo(map);
+
+        });
+  },
+
+});
+
+map.on('click', onMapClick);

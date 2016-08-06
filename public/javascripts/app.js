@@ -24,6 +24,13 @@ $('.btn').on('click', function() {
    'CHECKEDIN': 'checked-in',
    'POSTED': 'posted'
  }
+
+   //bootstrap pagination
+  //  $('.page-selection').bootpag({
+  //           total: 15
+  //       }).on("page", function(event,num){
+            //  $("#jobs").html();
+
     //  Gets jobs and populates data
     $.ajax({
         type: 'GET',
@@ -37,6 +44,8 @@ $('.btn').on('click', function() {
         },
         //Renders data to view
         success: function (data) {
+
+
             // console.log(data.length);
             data.forEach(function (value, i) {
                 var jobName = value.name;
@@ -249,5 +258,5 @@ $('.btn').on('click', function() {
        setTimeout(function(){
        location.reload(true); }, 2000);
 
-   });
-});
+    });
+  });
