@@ -25,11 +25,6 @@ $('.btn').on('click', function() {
    'POSTED': 'posted'
  }
 
-   //bootstrap pagination
-  //  $('.page-selection').bootpag({
-  //           total: 15
-  //       }).on("page", function(event,num){
-            //  $("#jobs").html();
 
     //  Gets jobs and populates data
     $.ajax({
