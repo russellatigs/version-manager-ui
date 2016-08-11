@@ -18,13 +18,12 @@ $('.btn').on('click', function() {
 });
 
 //jobtypes array
- var jobTypes = {
+var jobTypes = {
    'NEW': 'new-job',
    'EXPORTED': 'exported',
    'CHECKEDIN': 'checked-in',
    'POSTED': 'posted'
- }
-
+}
 
     //  Gets jobs and populates data
     $.ajax({
@@ -188,7 +187,7 @@ $('.btn').on('click', function() {
                      // location.reload(true); }, 2000);
                    });
               } else{
-              	alert("File size must be smaller than 100KB and in .gml format.");
+                alert("File size must be smaller than 100KB and in .gml format.");
               }
 
            console.log('hello');
@@ -238,7 +237,7 @@ $('.btn').on('click', function() {
            'Accept': 'application/json',
            'Content-Type': 'application/json' },
            dataType: 'json',
-           timeout:3000,
+           timeout:4000,
            crossDomain: true,
            success: function(data){
              console.log(data);
